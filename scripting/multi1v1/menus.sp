@@ -12,6 +12,16 @@ stock void GiveWeaponsMenu(int client, int position = 0) {
                   g_Rifles[GetRifleIndex(client)][1]);
   }
 
+  if (g_SMGMenuCvar.IntValue != 0) {
+    AddMenuOption(menu, "smg", "%T", "WeaponsMenuSMG", client,
+                  g_SMGs[GetSMGIndex(client)][1]);
+  }
+
+  if (g_ShotgunMenuCvar.IntValue != 0) {
+    AddMenuOption(menu, "shotgun", "%T", "WeaponsMenuShotgun", client,
+                  g_Shotguns[GetShotgunIndex(client)][1]);
+  }
+
   if (g_PistolMenuCvar.IntValue != 0) {
     AddMenuOption(menu, "pistol", "%T", "WeaponsMenuPistol", client,
                   g_Pistols[GetPistolIndex(client)][1]);
@@ -67,6 +77,12 @@ public int WeaponsMenuHandler(Menu menu, MenuAction action, int param1, int para
 
     if (StrEqual(buffer, "rifle")) {
       RifleChoiceMenu(client);
+
+    } else if (StrEqual(buffer, "smg")) {
+      SMGChoiceMenu(client);
+
+    } else if (StrEqual(buffer, "shotgun")) {
+      ShotgunChoiceMenu(client);
 
     } else if (StrEqual(buffer, "pistol")) {
       PistolChoiceMenu(client);
@@ -147,7 +163,7 @@ public int MenuHandler_Preference(Menu menu, MenuAction action, int param1, int 
 }
 
 /**
- * Primary weapon choice menu.
+ * Rifle choice menu.
  */
 public void RifleChoiceMenu(int client) {
   Menu menu = new Menu(MenuHandler_RifleChoice);
@@ -168,6 +184,68 @@ public int MenuHandler_RifleChoice(Menu menu, MenuAction action, int param1, int
     int client = param1;
     GetMenuItem(menu, param2, g_PrimaryWeapon[client], WEAPON_LENGTH);
     SetClientCookie(client, g_PrimaryWeaponCookie, g_PrimaryWeapon[client]);
+    GiveWeaponsMenu(client);
+  } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
+    int client = param1;
+    GiveWeaponsMenu(client);
+  } else if (action == MenuAction_End) {
+    delete menu;
+  }
+}
+
+/**
+ * SMG choice menu.
+ */
+public void SMGChoiceMenu(int client) {
+  Menu menu = new Menu(MenuHandler_SMGChoice);
+  menu.SetTitle("%T", "SMGMenuTitle", client);
+  menu.ExitButton = true;
+  menu.ExitBackButton = true;
+  for (int i = 0; i < g_numSMGs; i++) {
+    menu.AddItem(g_SMGs[i][0], g_SMGs[i][1]);
+  }
+  menu.Display(client, MENU_TIME_FOREVER);
+}
+
+/**
+ * SMG weapon handler - updates primaryWeapon.
+ */
+public int MenuHandler_SMGChoice(Menu menu, MenuAction action, int param1, int param2) {
+  if (action == MenuAction_Select) {
+    int client = param1;
+    GetMenuItem(menu, param2, g_SubWeapon[client], WEAPON_LENGTH);
+    SetClientCookie(client, g_SubWeaponCookie, g_SubWeapon[client]);
+    GiveWeaponsMenu(client);
+  } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
+    int client = param1;
+    GiveWeaponsMenu(client);
+  } else if (action == MenuAction_End) {
+    delete menu;
+  }
+}
+
+/**
+ * Shotgun choice menu.
+ */
+public void ShotgunChoiceMenu(int client) {
+  Menu menu = new Menu(MenuHandler_ShotgunChoice);
+  menu.SetTitle("%T", "ShotgunMenuTitle", client);
+  menu.ExitButton = true;
+  menu.ExitBackButton = true;
+  for (int i = 0; i < g_numShotguns; i++) {
+    menu.AddItem(g_Shotguns[i][0], g_Shotguns[i][1]);
+  }
+  menu.Display(client, MENU_TIME_FOREVER);
+}
+
+/**
+ * Shotgun weapon handler - updates primaryWeapon.
+ */
+public int MenuHandler_ShotgunChoice(Menu menu, MenuAction action, int param1, int param2) {
+  if (action == MenuAction_Select) {
+    int client = param1;
+    GetMenuItem(menu, param2, g_ShotWeapon[client], WEAPON_LENGTH);
+    SetClientCookie(client, g_ShotWeaponCookie, g_ShotWeapon[client]);
     GiveWeaponsMenu(client);
   } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
     int client = param1;
