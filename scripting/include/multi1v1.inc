@@ -356,6 +356,24 @@ native int Multi1v1_FindArenaNumber(const float origin[3]);
 native void Multi1v1_GetRifleChoice(int client, char buffer[WEAPON_NAME_LENGTH]);
 
 /**
+ * Gets the smg the client has selected in the weapons menu.
+ *
+ * @param client Client index.
+ * @param buffer Buffer to fill the result into.
+ * @error Client not connected.
+ */
+native void Multi1v1_GetSMGChoice(int client, char buffer[WEAPON_NAME_LENGTH]);
+
+/**
+ * Gets the shotgun the client has selected in the weapons menu.
+ *
+ * @param client Client index.
+ * @param buffer Buffer to fill the result into.
+ * @error Client not connected.
+ */
+native void Multi1v1_GetShotgunChoice(int client, char buffer[WEAPON_NAME_LENGTH]);
+
+/**
  * Gets the pistol the client has selected in the weapons menu.
  *
  * @param client Client index.
@@ -513,6 +531,8 @@ public void __pl_multi1v1_SetNTVOptional() {
   MarkNativeAsOptional("Multi1v1_GetArenaSpawn");
   MarkNativeAsOptional("Multi1v1_FindArenaNumber");
   MarkNativeAsOptional("Multi1v1_GetRifleChoice");
+  MarkNativeAsOptional("Multi1v1_GetSMGChoice");
+  MarkNativeAsOptional("Multi1v1_GetShotgunChoice");
   MarkNativeAsOptional("Multi1v1_GetPistolChoice");
   MarkNativeAsOptional("Multi1v1_AddRoundType");
   MarkNativeAsOptional("Multi1v1_ClearRoundTypes");
