@@ -1,42 +1,35 @@
 csgo-multi-1v1
 =======================================
 
-[![Build status](http://ci.splewis.net/job/csgo-multi-1v1/badge/icon)](http://ci.splewis.net/job/csgo-multi-1v1/)
-[![GitHub Downloads](https://img.shields.io/github/downloads/splewis/csgo-multi-1v1/total.svg?style=flat-square&label=Downloads)](https://github.com/splewis/csgo-multi-1v1/releases/latest)
-
 **Status: Supported.**
 
-The multi1v1 plugin sets up any number of players in 1v1-situations on specially made maps and they fight in a ladder-type system each round. The winners move up an arena, and the losers go down an arena. Players choose between specific round types (for example: "rifle", "pistol", "awp"), and the plugin automatically spawns and gives players the appropriate weapons each round start. 
+The multi1v1 plugin sets up any number of players in 1v1-situations on specially made maps and they fight in a ladder-type system each round. The winners move up an arena, and the losers go down an arena. Players choose between specific round types (for example: "rifle", "smg," "shotgun," "pistol", "awp"), and the plugin automatically spawns and gives players the appropriate weapons each round start. 
 
 Also see the [AlliedModders thread](https://forums.alliedmods.net/showthread.php?t=241056) and the [the wiki](https://github.com/splewis/csgo-multi-1v1/wiki) for more information.
 
 ## Features
-- Round types: there are 3 round types: rifle, pistol, and awp
-- Player selection: players can select to allow pistol and awp rounds or ban them, rifle rounds are always allowed
-- Player preference: players can also select a preference of round type, if player preferences match they will play that type
-- Weapon selection: players can select their primary (i.e. their rifle) and their pistol
-- Armor on pistol rounds: helmets are taken away, and kevlar is also taken away if the player selected an upgraded pistol
-- ELO ranking system: optionally, player statistics can be stored in a database, see below for details
+- Round types: There are 5 round types: rifle, SMG, shotgun, pistol, and awp.
+- Player selection: Players can select to allow SMG, shotgun, pistol, and awp rounds or ban them. Rifle rounds are always allowed.
+- Player preference: Players can also select a preference of round type. If player preferences match, they will play that type.
+- Weapon selection: Players can select their rifle, SMG, shotgun, and pistol preferences.
+- Armor on pistol rounds: Helmets are taken away on pistol rounds. If the player selects an upgraded pistol, kevlar is also taken away.
+- ELO ranking system: Optionally, player statistics can be stored in a database. See below for details.
 
 ## For plugin developers
 Check the [multi1v1.inc](scripting/include/multi1v1.inc) file to see what natives and forwards are avaliable to tweak the behavior of the plugin in more sophisticated ways.
 
-
 ## Extra plugins
 Sometimes it's easier to add something in a seperate plugin than add more convars, thus some features may be in support plugins. These are all optional.
 
-- **multi1v1_flashbangs**: if both players in an arena say "yes" to getting flashbangs, a flashbang is given to each player
-- **multi1v1_kniferounds**: adds unranked knife rounds
-- **multi1v1_online_stats_viewer**: adds the !stats and related commands that open up a stats webpage in a MOTD panel
-
+- **multi1v1_flashbangs**: If both players in an arena prefer having flashbangs enabled, a flashbang is given to each player.
+- **multi1v1_kniferounds**: Adds unranked knife rounds.
+- **multi1v1_online_stats_viewer**: Adds the !stats and related commands that open up a stats webpage in a MOTD panel.
 
 ## Download
-Stable releases are in the [GitHub Releases](https://github.com/splewis/csgo-multi-1v1/releases) section.
+Stable releases are in the [GitHub Releases](https://github.com/ToxiWoxi/cract-multi-1v1/releases) section.
 
 I **strongly** recommend using the [Updater](https://forums.alliedmods.net/showthread.php?t=169095) plugin which can automatically update the plugin for bug fixes.
 Any changes made through an automatic update will be backwards compatible.
-
-You may also download the [latest development build](http://ci.splewis.net/job/csgo-multi-1v1/lastSuccessfulBuild/) if you wish. If you report any bugs from these, make sure to include the build number (when typing ``sm plugins list`` into the server console, the build number will be displayed with the plugin version).
 
 ## Installation
 
@@ -74,16 +67,13 @@ There is a [wiki page](https://github.com/splewis/csgo-multi-1v1/wiki/Standard-s
 
 
 ## Building
-The build process is managed by my [smbuilder](https://github.com/splewis/sm-builder) project. You can still compile multi1v1.sp without it, however.
+To build this fork of Multi-1v1, you must use version 1.9 of SourceMod—which you can find [here](https://www.sourcemod.net/downloads.php?branch=1.9-dev&all=1)—and SMLib—which you can get by cloning or downloading [this git repository](https://github.com/bcserv/smlib).
 
-To compile, you will need:
-- [SMLib](https://github.com/bcserv/smlib) (required)
-
-You should make sure you have a relatively recent version of smlib - some changes were made to accommodate sourcemod 1.7 changes.
+For further instructions on how to compile SourceMod plugins, refer to [this guide](https://wiki.alliedmods.net/Compiling_SourceMod_Plugins) on the AlliedModders wiki.
 
 
 ## Maps
-I have a [workshop collection](http://steamcommunity.com/sharedfiles/filedetails/?id=249376192) of maps I know of. The "am_" prefix stands for aim_multi, reflecting the fact that the maps are similar to aim_ maps but there are multiple copies of them.
+Splewis has a [workshop collection](http://steamcommunity.com/sharedfiles/filedetails/?id=249376192) of maps they know of. The "am_" prefix stands for aim_multi, reflecting the fact that the maps are similar to aim_ maps but there are multiple copies of them.
 
 **Note: standard maps (de_dust2, etc.) or aim maps (aim_map, etc.) will not work with this plugin. Maps must be custom-made with multiple arenas.**
 
@@ -225,7 +215,7 @@ Note that the multi1v1 plugin will
 
 
 ## Contribution and Suggestions
-First, check the [issue tracker](https://github.com/splewis/csgo-multi-1v1/issues?state=open) to ask questions or make a suggestion.
+First, check the [issue tracker](https://github.com/ToxiWoxi/cract-multi-1v1/issues) to ask questions or make a suggestion.
 If you have a suggestion you can mark it as an enhancement.
 
 Guidelines
