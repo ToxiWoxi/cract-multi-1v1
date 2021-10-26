@@ -45,6 +45,8 @@ public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max
   CreateNative("Multi1v1_GetArenaSpawn", Native_GetArenaSpawn);
   CreateNative("Multi1v1_FindArenaNumber", Native_FindArenaNumber);
   CreateNative("Multi1v1_GetRifleChoice", Native_GetRifleChoice);
+  CreateNative("Multi1v1_GetSMGChoice", Native_GetSMGChoice);
+  CreateNative("Multi1v1_GetShotgunChoice", Native_GetShotgunChoice);
   CreateNative("Multi1v1_GetPistolChoice", Native_GetPistolChoice);
   CreateNative("Multi1v1_HasRoundTypeSpecificRating", Native_HasRoundTypeSpecificRating);
   CreateNative("Multi1v1_GetRoundTypeIndex", Native_GetRoundTypeIndex);
@@ -357,6 +359,18 @@ public int Native_GetRifleChoice(Handle plugin, int numParams) {
   SetNativeString(2, g_PrimaryWeapon[client], WEAPON_NAME_LENGTH);
 }
 
+public int Native_GetSMGChoice(Handle plugin, int numParams) {
+  int client = GetNativeCell(1);
+  CHECK_CONNECTED(client);
+  SetNativeString(2, g_SubWeapon[client], WEAPON_NAME_LENGTH);
+}
+
+public int Native_GetShotgunChoice(Handle plugin, int numParams) {
+  int client = GetNativeCell(1);
+  CHECK_CONNECTED(client);
+  SetNativeString(2, g_ShotWeapon[client], WEAPON_NAME_LENGTH);
+}
+
 public int Native_GetPistolChoice(Handle plugin, int numParams) {
   int client = GetNativeCell(1);
   CHECK_CONNECTED(client);
@@ -422,7 +436,7 @@ public int Native_HasRoundTypeSpecificRating(Handle plugin, int numParams) {
   int roundType = GetNativeCell(1);
   CHECK_ROUNDTYPE(roundType);
   return HasRoundTypeSpecificRating(roundType);
-}  
+}
 
 public int Native_GetRoundTypeIndex(Handle plugin, int numParams) {
   char buffer[ROUND_TYPE_NAME_LENGTH];
@@ -472,7 +486,7 @@ public int Native_IsHidingStates(Handle plugin, int numParams) {
   return g_HideStats[client];
 }
 
-public int Native_AreRatingChangesAllowed(Handle plugin, int numParams) {  
+public int Native_AreRatingChangesAllowed(Handle plugin, int numParams) {
   return AreRatingChangesAllowed();
 }
 
