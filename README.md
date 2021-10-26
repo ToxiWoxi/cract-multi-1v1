@@ -34,7 +34,7 @@ If using this fork of multi-1v1, I recommend **against** using the [Updater](htt
 
 #### Requirements
 
-Sourcemod 1.9 or later.
+SourceMod 1.9 or later.
 
 #### Instructions
 Download the archive and extract the files to the game server. From the download, you should have installed the following (to the ``csgo`` directory):
