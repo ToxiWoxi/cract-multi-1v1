@@ -94,6 +94,16 @@
 		"#format"		"{1:s}"
 		"en"		"Rifle: {1}"
 	}
+	"WeaponsMenuSMG"
+	{
+		"#format"		"{1:s}"
+		"en"		"SMG: {1}"
+	}
+	"WeaponsMenuShotgun"
+	{
+		"#format"		"{1:s}"
+		"en"		"Shotgun: {1}"
+	}
 	"WeaponsMenuPistol"
 	{
 		"#format"		"{1:s}"
@@ -129,6 +139,14 @@
 	"WeaponsMenuSelection"
 	{
 		"en"		"Choose your favorite rifle:"
+	}
+	"SMGMenuTitle"
+	{
+		"en"		"Choose your favorite SMG:"
+	}
+	"ShotgunMenuTitle"
+	{
+		"en"		"Choose your favorite shotgun:"
 	}
 	"PistolMenuTitle"
 	{
