@@ -109,12 +109,46 @@ public int AddRoundType(Handle pluginSource, const char[] displayName, const cha
 
 public void AddStandardRounds() {
   AddRoundType(INVALID_HANDLE, "Rifle", "rifle", RifleHandler, false, true, "rifleRating", true);
+  AddRoundType(INVALID_HANDLE, "SMG", "smg", SMGHandler, true, true, "smgRating", true);
+  AddRoundType(INVALID_HANDLE, "Shotgun", "shotgun", ShotgunHandler, true, true, "shotgunRating", true);
   AddRoundType(INVALID_HANDLE, "Pistol", "pistol", PistolHandler, true, true, "pistolRating", true);
   AddRoundType(INVALID_HANDLE, "AWP", "awp", AwpHandler, true, true, "awpRating", true);
 }
 
 public void RifleHandler(int client) {
   GiveWeapon(client, g_PrimaryWeapon[client]);
+  Client_SetHelmet(client, true);
+  Client_SetArmor(client, 100);
+
+  int pistolBehavior = g_PistolBehaviorCvar.IntValue;
+  if (pistolBehavior == 0 || pistolBehavior == 3) {
+    GiveWeapon(client, g_SecondaryWeapon[client]);
+  } else if (pistolBehavior == 2) {
+    char defaultPistol[WEAPON_NAME_LENGTH];
+    g_DefaultPistolCvar.GetString(defaultPistol, sizeof(defaultPistol));
+    GiveWeapon(client, defaultPistol);
+  }
+  Multi1v1_GivePlayerKnife(client);
+}
+
+public void SMGHandler(int client) {
+  GiveWeapon(client, g_SubWeapon[client]);
+  Client_SetHelmet(client, true);
+  Client_SetArmor(client, 100);
+
+  int pistolBehavior = g_PistolBehaviorCvar.IntValue;
+  if (pistolBehavior == 0 || pistolBehavior == 3) {
+    GiveWeapon(client, g_SecondaryWeapon[client]);
+  } else if (pistolBehavior == 2) {
+    char defaultPistol[WEAPON_NAME_LENGTH];
+    g_DefaultPistolCvar.GetString(defaultPistol, sizeof(defaultPistol));
+    GiveWeapon(client, defaultPistol);
+  }
+  Multi1v1_GivePlayerKnife(client);
+}
+
+public void ShotgunHandler(int client) {
+  GiveWeapon(client, g_ShotWeapon[client]);
   Client_SetHelmet(client, true);
   Client_SetArmor(client, 100);
 
