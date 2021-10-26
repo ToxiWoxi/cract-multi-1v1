@@ -53,6 +53,8 @@ ConVar g_PistolMenuCvar;
 ConVar g_PreferenceWeightCvar;
 ConVar g_RandomizeArenaOrderCvar;
 ConVar g_RifleMenuCvar;
+ConVar g_SMGMenuCvar;
+ConVar g_ShotgunMenuCvar;
 ConVar g_RoundTimeCvar;
 ConVar g_SpectateFlagsCvar;
 ConVar g_UseAssistsCvar;
@@ -93,9 +95,13 @@ Handle g_SavedCvars = INVALID_HANDLE;
 
 int g_Preference[MAXPLAYERS + 1];
 char g_PrimaryWeapon[MAXPLAYERS + 1][WEAPON_LENGTH];
+char g_SubWeapon[MAXPLAYERS + 1][WEAPON_LENGTH];
+char g_ShotWeapon[MAXPLAYERS + 1][WEAPON_LENGTH];
 char g_SecondaryWeapon[MAXPLAYERS + 1][WEAPON_LENGTH];
 Handle g_PreferenceCookie = INVALID_HANDLE;
 Handle g_PrimaryWeaponCookie = INVALID_HANDLE;
+Handle g_SubWeaponCookie = INVALID_HANDLE;
+Handle g_ShotWeaponCookie = INVALID_HANDLE;
 Handle g_SecondaryWeaponCookie = INVALID_HANDLE;
 
 bool g_BlockStatChanges[MAXPLAYERS + 1];
@@ -160,6 +166,10 @@ ConVar g_RoundRestartDelayCvar;
 #define WEAPON_MAX 16
 int g_numRifles;
 char g_Rifles[WEAPON_MAX][3][WEAPON_NAME_LENGTH];
+int g_numSMGs;
+char g_SMGs[WEAPON_MAX][3][WEAPON_NAME_LENGTH];
+int g_numShotguns;
+char g_Shotguns[WEAPON_MAX][3][WEAPON_NAME_LENGTH];
 int g_numPistols;
 char g_Pistols[WEAPON_MAX][3][WEAPON_NAME_LENGTH];
 
@@ -257,6 +267,12 @@ public void OnPluginStart() {
   g_RifleMenuCvar =
       CreateConVar("sm_multi1v1_show_rifle_menu", "1",
                    "Whether the rifle choice menu should be included in the guns menu");
+  g_SMGMenuCvar =
+      CreateConVar("sm_multi1v1_show_SMG_menu", "1",
+                   "Whether the SMG choice menu should be included in the guns menu");
+  g_ShotgunMenuCvar =
+      CreateConVar("sm_multi1v1_show_Shotgun_menu", "1",
+                   "Whether the Shotgun choice menu should be included in the guns menu");
   g_RoundTimeCvar =
       CreateConVar("sm_multi1v1_roundtime", "30", "Roundtime (in seconds)", _, true, 5.0);
   g_SpectateFlagsCvar =
@@ -358,6 +374,10 @@ public void OnPluginStart() {
       RegClientCookie("multi1v1_preference", "multi1v1 round type prefernece", CookieAccess_Public);
   g_PrimaryWeaponCookie =
       RegClientCookie("multi1v1_rifle", "multi1v1 rifle choice", CookieAccess_Public);
+  g_SubWeaponCookie =
+      RegClientCookie("multi1v1_smg", "multi1v1 SMG choice", CookieAccess_Public);
+  g_ShotWeaponCookie =
+      RegClientCookie("multi1v1_shotgun", "multi1v1 shotgun choice", CookieAccess_Public);
   g_SecondaryWeaponCookie =
       RegClientCookie("multi1v1_pistol", "multi1v1 pistol choice", CookieAccess_Public);
 
@@ -856,7 +876,7 @@ public Action Event_OnPlayerDeath(Event event, const char[] name, bool dontBroad
 
   int victim = GetClientOfUserId(event.GetInt("userid"));
   int attacker = GetClientOfUserId(event.GetInt("attacker"));
-  
+
   if (victim < 0) {
     return;
   }
@@ -1204,6 +1224,8 @@ public void ResetClientVariables(int client) {
   g_LetTimeExpire[client] = false;
   g_Preference[client] = 0;
   g_PrimaryWeapon[client] = "weapon_ak47";
+  g_SubWeapon[client] = "weapon_ump45";
+  g_ShotWeapon[client] = "weapon_nova";
   g_SecondaryWeapon[client] = "weapon_glock";
   g_HideStats[client] = HIDESTATS_DEFAULT;
   g_AutoSpec[client] = AUTOSPEC_DEFAULT;
