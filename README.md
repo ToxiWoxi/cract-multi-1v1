@@ -28,8 +28,7 @@ Sometimes it's easier to add something in a seperate plugin than add more convar
 ## Download
 Stable releases are in the [GitHub Releases](https://github.com/ToxiWoxi/cract-multi-1v1/releases) section.
 
-I **strongly** recommend using the [Updater](https://forums.alliedmods.net/showthread.php?t=169095) plugin which can automatically update the plugin for bug fixes.
-Any changes made through an automatic update will be backwards compatible.
+If using this fork of multi-1v1, I recommend **against** using the [Updater](https://forums.alliedmods.net/showthread.php?t=169095) plugin until further notice as it will simply install the original.
 
 ## Installation
 
