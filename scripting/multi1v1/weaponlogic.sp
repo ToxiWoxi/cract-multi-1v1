@@ -5,6 +5,8 @@
 public void Weapons_Init() {
   g_numPistols = 0;
   g_numRifles = 0;
+  g_numSMGs = 0;
+  g_numShotguns = 0;
 
   char configFile[PLATFORM_MAX_PATH];
   BuildPath(Path_SM, configFile, sizeof(configFile), "configs/multi1v1_weapons.cfg");
@@ -33,6 +35,42 @@ public void Weapons_Init() {
     kv.GetString("name", g_Rifles[g_numRifles][1], WEAPON_NAME_LENGTH, g_Rifles[g_numRifles][0]);
     kv.GetString("team", g_Rifles[g_numRifles][2], WEAPON_NAME_LENGTH, "ANY");
     g_numRifles++;
+  } while (kv.GotoNextKey());
+  kv.Rewind();
+
+  // Parse the smgs section
+  if (!KvJumpToKey(kv, "SMGs")) {
+    LogError("The weapon config file did not contain a \"SMGs\" section: %s", configFile);
+    delete kv;
+    LoadBackupConfig();
+    return;
+  }
+  if (!kv.GotoFirstSubKey()) {
+    LogError("No SMGs were found.");
+  }
+  do {
+    kv.GetSectionName(g_SMGs[g_numSMGs][0], WEAPON_NAME_LENGTH);
+    kv.GetString("name", g_SMGs[g_numSMGs][1], WEAPON_NAME_LENGTH, g_SMGs[g_numSMGs][0]);
+    kv.GetString("team", g_SMGs[g_numSMGs][2], WEAPON_NAME_LENGTH, "ANY");
+    g_numSMGs++;
+  } while (kv.GotoNextKey());
+  kv.Rewind();
+
+  // Parse the shotguns section
+  if (!KvJumpToKey(kv, "Shotguns")) {
+    LogError("The weapon config file did not contain a \"Shotguns\" section: %s", configFile);
+    delete kv;
+    LoadBackupConfig();
+    return;
+  }
+  if (!kv.GotoFirstSubKey()) {
+    LogError("No shotguns were found.");
+  }
+  do {
+    kv.GetSectionName(g_Shotguns[g_numShotguns][0], WEAPON_NAME_LENGTH);
+    kv.GetString("name", g_Shotguns[g_numShotguns][1], WEAPON_NAME_LENGTH, g_Shotguns[g_numShotguns][0]);
+    kv.GetString("team", g_Shotguns[g_numShotguns][2], WEAPON_NAME_LENGTH, "ANY");
+    g_numShotguns++;
   } while (kv.GotoNextKey());
   kv.Rewind();
 
@@ -71,6 +109,19 @@ static void LoadBackupConfig() {
   g_Rifles[1][2] = "CT";
   g_numRifles = 2;
 
+  g_SMGs[0][0] = "weapon_mac10";
+  g_SMGs[0][1] = "Mac-10";
+  g_SMGs[0][2] = "T";
+  g_SMGs[1][0] = "weapon_mp9";
+  g_SMGs[1][1] = "MP9";
+  g_SMGs[1][2] = "CT";
+  g_numSMGs = 2;
+
+  g_Shotguns[0][0] = "weapon_nova";
+  g_Shotguns[0][1] = "Nova";
+  g_Shotguns[0][2] = "ANY";
+  g_numShotguns = 1;
+
   g_Pistols[0][0] = "weapon_glock";
   g_Pistols[0][1] = "Glock";
   g_Pistols[0][2] = "T";
@@ -99,6 +150,16 @@ public int GetWeaponTeam(const char[] weapon) {
       return TeamStringToTeam(g_Rifles[i][2][0]);
     }
   }
+  for (int i = 0; i < g_numSMGs; i++) {
+    if (StrEqual(weapon[0], g_SMGs[i][0])) {
+      return TeamStringToTeam(g_SMGs[i][2][0]);
+    }
+  }
+  for (int i = 0; i < g_numShotguns; i++) {
+    if (StrEqual(weapon[0], g_Shotguns[i][0])) {
+      return TeamStringToTeam(g_Shotguns[i][2][0]);
+    }
+  }
   for (int i = 0; i < g_numPistols; i++) {
     if (StrEqual(weapon[0], g_Pistols[i][0])) {
       return TeamStringToTeam(g_Pistols[i][2][0]);
@@ -119,6 +180,14 @@ public void UpdatePreferencesOnCookies(int client) {
   GetClientCookie(client, g_PrimaryWeaponCookie, cookieValue, sizeof(cookieValue));
   if (IsAllowedRifle(cookieValue))
     strcopy(g_PrimaryWeapon[client], WEAPON_LENGTH, cookieValue);
+
+  GetClientCookie(client, g_SubWeaponCookie, cookieValue, sizeof(cookieValue));
+  if (IsAllowedSMG(cookieValue))
+    strcopy(g_SubWeapon[client], WEAPON_LENGTH, cookieValue);
+
+  GetClientCookie(client, g_ShotWeaponCookie, cookieValue, sizeof(cookieValue));
+  if (IsAllowedShotgun(cookieValue))
+    strcopy(g_ShotWeapon[client], WEAPON_LENGTH, cookieValue);
 
   GetClientCookie(client, g_SecondaryWeaponCookie, cookieValue, sizeof(cookieValue));
   if (IsAllowedPistol(cookieValue))
@@ -174,6 +243,30 @@ public bool IsAllowedRifle(const char[] weapon) {
   return false;
 }
 
+public bool IsAllowedSMG(const char[] weapon) {
+  if (g_SMGMenuCvar.IntValue == 0) {
+    return false;
+  }
+  for (int i = 0; i < g_numSMGs; i++) {
+    if (StrEqual(g_SMGs[i][0], weapon, false)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+public bool IsAllowedShotgun(const char[] weapon) {
+  if (g_ShotgunMenuCvar.IntValue == 0) {
+    return false;
+  }
+  for (int i = 0; i < g_numShotguns; i++) {
+    if (StrEqual(g_Shotguns[i][0], weapon, false)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 public bool IsAllowedPistol(const char[] weapon) {
   if (g_PistolMenuCvar.IntValue == 0) {
     return false;
@@ -189,6 +282,24 @@ public bool IsAllowedPistol(const char[] weapon) {
 public int GetRifleIndex(int client) {
   for (int i = 0; i < g_numRifles; i++) {
     if (StrEqual(g_Rifles[i][0], g_PrimaryWeapon[client])) {
+      return i;
+    }
+  }
+  return 0;
+}
+
+public int GetSMGIndex(int client) {
+  for (int i = 0; i < g_numSMGs; i++) {
+    if (StrEqual(g_SMGs[i][0], g_SubWeapon[client])) {
+      return i;
+    }
+  }
+  return 0;
+}
+
+public int GetShotgunIndex(int client) {
+  for (int i = 0; i < g_numShotguns; i++) {
+    if (StrEqual(g_Shotguns[i][0], g_ShotWeapon[client])) {
       return i;
     }
   }
