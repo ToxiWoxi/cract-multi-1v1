@@ -1,3 +1,10 @@
+[Cract] 1.0.0:
+- reset version number
+- add smg and shotgun weapon preferences
+- add support for "smg_preference" and "shotgun_preference" in customrounds.cfg file
+- add zeus rounds to customrounds.cfg file
+- change message prefix to ``[Cract.org]``
+
 1.1.8:
 - change ``Multi1v1_OnRoundTypesAdded`` to be called in OnPluginStart instead of OnMapStart, this fixes a cookie issue where clientprefs cookies aren't always saved
 - add support for "rifle_preference" and "pistol_preference" in customrounds.cfg file
