@@ -56,13 +56,13 @@ public void CustomWeaponHandler(int client) {
     char weapon[WEAPON_NAME_LENGTH];
     weapons.GetString(i, weapon, sizeof(weapon));
     if (StrEqual(weapon, "rifle_preference")) {
-      GiveWeapon(client, g_PrimaryWeapon[client]);
+      GiveWeapon(client, g_RifleWeaponChoice[client]);
     } else if (StrEqual(weapon, "smg_preference")) {
-      GiveWeapon(client, g_SubWeapon[client]);
+      GiveWeapon(client, g_SMGWeaponChoice[client]);
     } else if (StrEqual(weapon, "shotgun_preference")) {
-      GiveWeapon(client, g_ShotWeapon[client]);
+      GiveWeapon(client, g_ShotgunWeaponChoice[client]);
     } else if (StrEqual(weapon, "pistol_preference")) {
-      GiveWeapon(client, g_SecondaryWeapon[client]);
+      GiveWeapon(client, g_PistolWeaponChoice[client]);
     } else {
       GiveWeapon(client, weapon);
     }
