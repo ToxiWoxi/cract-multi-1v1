@@ -46,6 +46,7 @@ ConVar g_DatabaseServerIdCvar;
 ConVar g_DefaultPistolCvar;
 ConVar g_ExecDefaultConfigCvar;
 ConVar g_HideGunsChatCommandsCvar;
+ConVar g_MessagePrefixCvar;
 ConVar g_MinPlayersForRatingChangesCvar;
 ConVar g_MuteOtherArenasCvar;
 ConVar g_PistolBehaviorCvar;
@@ -232,65 +233,74 @@ public void OnPluginStart() {
   g_AutoGunsMenuBehaviorCvar = CreateConVar(
       "sm_multi1v1_menu_open_behavior", "0",
       "Determines auto-open behavior of the guns menu. 0=never auto-open, 1=open if the client has no preference cookies saved, 2=always open on client connect");
-  g_AutoUpdateCvar =
-      CreateConVar("sm_multi1v1_autoupdate", "0",
-                   "Whether the plugin attempts to auto-update. Requies the \"Updater\" plugin");
-  g_BlockRadioCvar = CreateConVar("sm_multi1v1_block_radio", "1",
-                                  "Should the plugin block radio commands from being broadcasted");
+  g_AutoUpdateCvar = CreateConVar(
+      "sm_multi1v1_autoupdate", "0",
+      "Whether the plugin attempts to auto-update. Requies the \"Updater\" plugin");
+  g_BlockRadioCvar = CreateConVar(
+      "sm_multi1v1_block_radio", "1",
+      "Should the plugin block radio commands from being broadcasted");
   g_DatabaseServerIdCvar = CreateConVar(
       "sm_multi1v1_database_server_id", "0",
       "If you are storing database stats, a number to identify this server. Most users don't need to change this but if you are using the web interface and/or want to show/store stats for multiple servers separately, it should.");
-  g_DefaultPistolCvar = CreateConVar("sm_multi1v1_default_pistol", "weapon_p250",
-                                     "Default pistol to give if sm_multi1v1_pistol_behavior=2");
+  g_DefaultPistolCvar = CreateConVar(
+      "sm_multi1v1_default_pistol", "weapon_p250",
+      "Default pistol to give if sm_multi1v1_pistol_behavior=2");
   g_ExecDefaultConfigCvar = CreateConVar(
       "sm_multi1v1_exec_default_config", "1",
       "Whether the plugin will exectue gamemode_competitive.cfg before the sourcemod/multi1v1/game_cvars.cfg file.");
   g_HideGunsChatCommandsCvar = CreateConVar(
       "sm_multi1v1_block_guns_chat_commands", "1",
       "Whether commands like \"guns\" or \"!guns\" will be blocked from showing up in chat.");
-  g_MinPlayersForRatingChangesCvar = CreateConVar("sm_multi1v1_min_players_for_rating_changes", "0",
-                                                  "Minimum number of players for rating changes");
-  g_MuteOtherArenasCvar = CreateConVar("sm_multi1v1_mute_other_arenas", "1",
-                                       "Whether bullet shots from other arenas are muted");
+  g_MessagePrefixCvar = CreateConVar(
+      "sm_multi1v1_message_prefix", " \x0c[\x01Cract\x0c]\x01 ",
+      "Prefix that is shown before Multi1v1 messages.");
+  g_MinPlayersForRatingChangesCvar = CreateConVar(
+      "sm_multi1v1_min_players_for_rating_changes", "0",
+      "Minimum number of players for rating changes");
+  g_MuteOtherArenasCvar = CreateConVar(
+      "sm_multi1v1_mute_other_arenas", "1",
+      "Whether bullet shots from other arenas are muted");
   g_PistolBehaviorCvar = CreateConVar(
       "sm_multi1v1_pistol_behavior", "0",
       "Behavior 0=always give the pistol the player selected, 1=never give pistols on non-pistol rounds, 2=always give sm_multi1v1_default_pistol on non-pistol rounds 3=give pistol choice on rifle/pistol rounds, but use sm_multi1v1_default_pistol on awp rounds");
-  g_PistolMenuCvar =
-      CreateConVar("sm_multi1v1_show_pistol_menu", "1",
-                   "Whether the pistol choice menu should be included in the guns menu");
+  g_PistolMenuCvar = CreateConVar(
+      "sm_multi1v1_show_pistol_menu", "1",
+      "Whether the pistol choice menu should be included in the guns menu");
   g_PreferenceWeightCvar = CreateConVar(
       "sm_multi1v1_preference_weight", "1",
       "How much weight are given to preferences when round types are being selected. Use a higher number for a preference to be more likely, or 0 to make the preference have no effect");
-  g_RandomizeArenaOrderCvar =
-      CreateConVar("sm_multi1v1_randomize_arena_order", "0",
-                   "Whether the randomize the ordering of the arenas each round");
-  g_RifleMenuCvar =
-      CreateConVar("sm_multi1v1_show_rifle_menu", "1",
-                   "Whether the rifle choice menu should be included in the guns menu");
-  g_RoundTimeCvar =
-      CreateConVar("sm_multi1v1_roundtime", "30", "Roundtime (in seconds)", _, true, 5.0);
-  g_ShotgunMenuCvar =
-      CreateConVar("sm_multi1v1_show_Shotgun_menu", "1",
-            "Whether the Shotgun choice menu should be included in the guns menu");
-  g_SMGMenuCvar =
-      CreateConVar("sm_multi1v1_show_SMG_menu", "1",
-            "Whether the SMG choice menu should be included in the guns menu");
-  g_SpectateFlagsCvar =
-      CreateConVar("sm_multi1v1_spectate_flags", "",
-                   "Admin flags required to join spectate. Empty means anyone can join spectate.");
-  g_UseAssistsCvar =
-      CreateConVar("sm_multi1v1_use_assists", "0",
-                   "Whether assists are updated to reflect a player's number of rounds in arena 1");
-  g_UseChatPrefixCvar = CreateConVar("sm_multi1v1_use_chat_prefix", "1",
-                                     "Whether to use a [Multi1v1] tag in chat messages");
-  g_UseDatabaseCvar = CreateConVar("sm_multi1v1_use_database", "1",
-                                   "Whether a database is used to store player statistics");
+  g_RandomizeArenaOrderCvar =  CreateConVar(
+      "sm_multi1v1_randomize_arena_order", "0",
+      "Whether the randomize the ordering of the arenas each round");
+  g_RifleMenuCvar = CreateConVar(
+      "sm_multi1v1_show_rifle_menu", "1",
+      "Whether the rifle choice menu should be included in the guns menu");
+  g_RoundTimeCvar = CreateConVar(
+      "sm_multi1v1_roundtime", "30", "Roundtime (in seconds)", _, true, 5.0);
+  g_ShotgunMenuCvar = CreateConVar(
+      "sm_multi1v1_show_Shotgun_menu", "1",
+      "Whether the Shotgun choice menu should be included in the guns menu");
+  g_SMGMenuCvar = CreateConVar(
+      "sm_multi1v1_show_SMG_menu", "1",
+      "Whether the SMG choice menu should be included in the guns menu");
+  g_SpectateFlagsCvar = CreateConVar(
+      "sm_multi1v1_spectate_flags", "",
+      "Admin flags required to join spectate. Empty means anyone can join spectate.");
+  g_UseAssistsCvar = CreateConVar(
+      "sm_multi1v1_use_assists", "0",
+      "Whether assists are updated to reflect a player's number of rounds in arena 1");
+  g_UseChatPrefixCvar = CreateConVar(
+      "sm_multi1v1_use_chat_prefix", "1",
+      "Whether to use a [Multi1v1] tag in chat messages");
+  g_UseDatabaseCvar = CreateConVar(
+      "sm_multi1v1_use_database", "1",
+      "Whether a database is used to store player statistics");
   g_UseMVPStarsCvar = CreateConVar(
       "sm_multi1v1_use_mvp_stars", "1",
       "Whether MVP stars are updated to reflect a player's number of rounds in arena 1");
-  g_UseTeamTagsCvar =
-      CreateConVar("sm_multi1v1_use_team_tags", "1",
-                   "Whether the team (or clan) tag is updated to reflect a player's arena numbers");
+  g_UseTeamTagsCvar = CreateConVar(
+      "sm_multi1v1_use_team_tags", "1",
+      "Whether the team (or clan) tag is updated to reflect a player's arena numbers");
   g_VerboseSpawnModeCvar = CreateConVar(
       "sm_multi1v1_verbose_spawns", "0",
       "Set to 1 to get info about all spawns the plugin read - useful for map creators testing against the plugin");
