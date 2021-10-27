@@ -94,15 +94,15 @@ Handle g_AutoSpecCookie;
 Handle g_SavedCvars = INVALID_HANDLE;
 
 int g_Preference[MAXPLAYERS + 1];
-char g_PrimaryWeapon[MAXPLAYERS + 1][WEAPON_LENGTH];
-char g_SubWeapon[MAXPLAYERS + 1][WEAPON_LENGTH];
-char g_ShotWeapon[MAXPLAYERS + 1][WEAPON_LENGTH];
-char g_SecondaryWeapon[MAXPLAYERS + 1][WEAPON_LENGTH];
+char g_RifleWeaponChoice[MAXPLAYERS + 1][WEAPON_LENGTH];
+char g_SMGWeaponChoice[MAXPLAYERS + 1][WEAPON_LENGTH];
+char g_ShotgunWeaponChoice[MAXPLAYERS + 1][WEAPON_LENGTH];
+char g_PistolWeaponChoice[MAXPLAYERS + 1][WEAPON_LENGTH];
 Handle g_PreferenceCookie = INVALID_HANDLE;
-Handle g_PrimaryWeaponCookie = INVALID_HANDLE;
-Handle g_SubWeaponCookie = INVALID_HANDLE;
-Handle g_ShotWeaponCookie = INVALID_HANDLE;
-Handle g_SecondaryWeaponCookie = INVALID_HANDLE;
+Handle g_RifleWeaponChoiceCookie = INVALID_HANDLE;
+Handle g_SMGWeaponChoiceCookie = INVALID_HANDLE;
+Handle g_ShotgunWeaponChoiceCookie = INVALID_HANDLE;
+Handle g_PistolWeaponChoiceCookie = INVALID_HANDLE;
 
 bool g_BlockStatChanges[MAXPLAYERS + 1];
 bool g_BlockChatMessages[MAXPLAYERS + 1];
@@ -372,13 +372,13 @@ public void OnPluginStart() {
       CookieAccess_Public);
   g_PreferenceCookie =
       RegClientCookie("multi1v1_preference", "multi1v1 round type prefernece", CookieAccess_Public);
-  g_PrimaryWeaponCookie =
+  g_RifleWeaponChoiceCookie =
       RegClientCookie("multi1v1_rifle", "multi1v1 rifle choice", CookieAccess_Public);
-  g_SubWeaponCookie =
+  g_SMGWeaponChoiceCookie =
       RegClientCookie("multi1v1_smg", "multi1v1 SMG choice", CookieAccess_Public);
-  g_ShotWeaponCookie =
+  g_ShotgunWeaponChoiceCookie =
       RegClientCookie("multi1v1_shotgun", "multi1v1 shotgun choice", CookieAccess_Public);
-  g_SecondaryWeaponCookie =
+  g_PistolWeaponChoiceCookie =
       RegClientCookie("multi1v1_pistol", "multi1v1 pistol choice", CookieAccess_Public);
 
   Weapons_Init();
@@ -1223,10 +1223,10 @@ public void ResetClientVariables(int client) {
   g_Ranking[client] = -1;
   g_LetTimeExpire[client] = false;
   g_Preference[client] = 0;
-  g_PrimaryWeapon[client] = "weapon_ak47";
-  g_SubWeapon[client] = "weapon_ump45";
-  g_ShotWeapon[client] = "weapon_nova";
-  g_SecondaryWeapon[client] = "weapon_glock";
+  g_RifleWeaponChoice[client] = "weapon_ak47";
+  g_SMGWeaponChoice[client] = "weapon_ump45";
+  g_ShotgunWeaponChoice[client] = "weapon_nova";
+  g_PistolWeaponChoice[client] = "weapon_glock";
   g_HideStats[client] = HIDESTATS_DEFAULT;
   g_AutoSpec[client] = AUTOSPEC_DEFAULT;
 }
