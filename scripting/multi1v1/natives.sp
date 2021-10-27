@@ -356,25 +356,25 @@ public int Native_FindArenaNumber(Handle plugin, int numParams) {
 public int Native_GetRifleChoice(Handle plugin, int numParams) {
   int client = GetNativeCell(1);
   CHECK_CONNECTED(client);
-  SetNativeString(2, g_PrimaryWeapon[client], WEAPON_NAME_LENGTH);
+  SetNativeString(2, g_RifleWeaponChoice[client], WEAPON_NAME_LENGTH);
 }
 
 public int Native_GetSMGChoice(Handle plugin, int numParams) {
   int client = GetNativeCell(1);
   CHECK_CONNECTED(client);
-  SetNativeString(2, g_SubWeapon[client], WEAPON_NAME_LENGTH);
+  SetNativeString(2, g_SMGWeaponChoice[client], WEAPON_NAME_LENGTH);
 }
 
 public int Native_GetShotgunChoice(Handle plugin, int numParams) {
   int client = GetNativeCell(1);
   CHECK_CONNECTED(client);
-  SetNativeString(2, g_ShotWeapon[client], WEAPON_NAME_LENGTH);
+  SetNativeString(2, g_ShotgunWeaponChoice[client], WEAPON_NAME_LENGTH);
 }
 
 public int Native_GetPistolChoice(Handle plugin, int numParams) {
   int client = GetNativeCell(1);
   CHECK_CONNECTED(client);
-  SetNativeString(2, g_SecondaryWeapon[client], WEAPON_NAME_LENGTH);
+  SetNativeString(2, g_PistolWeaponChoice[client], WEAPON_NAME_LENGTH);
 }
 
 public int Native_ClearRoundTypes(Handle plugin, int numParams) {
