@@ -177,21 +177,21 @@ public void UpdatePreferencesOnCookies(int client) {
   }
 
   char cookieValue[WEAPON_LENGTH];
-  GetClientCookie(client, g_PrimaryWeaponCookie, cookieValue, sizeof(cookieValue));
+  GetClientCookie(client, g_RifleWeaponChoiceCookie, cookieValue, sizeof(cookieValue));
   if (IsAllowedRifle(cookieValue))
-    strcopy(g_PrimaryWeapon[client], WEAPON_LENGTH, cookieValue);
+    strcopy(g_RifleWeaponChoice[client], WEAPON_LENGTH, cookieValue);
 
-  GetClientCookie(client, g_SubWeaponCookie, cookieValue, sizeof(cookieValue));
+  GetClientCookie(client, g_SMGWeaponChoiceCookie, cookieValue, sizeof(cookieValue));
   if (IsAllowedSMG(cookieValue))
-    strcopy(g_SubWeapon[client], WEAPON_LENGTH, cookieValue);
+    strcopy(g_SMGWeaponChoice[client], WEAPON_LENGTH, cookieValue);
 
-  GetClientCookie(client, g_ShotWeaponCookie, cookieValue, sizeof(cookieValue));
+  GetClientCookie(client, g_ShotgunWeaponChoiceCookie, cookieValue, sizeof(cookieValue));
   if (IsAllowedShotgun(cookieValue))
-    strcopy(g_ShotWeapon[client], WEAPON_LENGTH, cookieValue);
+    strcopy(g_ShotgunWeaponChoice[client], WEAPON_LENGTH, cookieValue);
 
-  GetClientCookie(client, g_SecondaryWeaponCookie, cookieValue, sizeof(cookieValue));
+  GetClientCookie(client, g_PistolWeaponChoiceCookie, cookieValue, sizeof(cookieValue));
   if (IsAllowedPistol(cookieValue))
-    strcopy(g_SecondaryWeapon[client], WEAPON_LENGTH, cookieValue);
+    strcopy(g_PistolWeaponChoice[client], WEAPON_LENGTH, cookieValue);
 
   GetClientCookie(client, g_PreferenceCookie, cookieValue, sizeof(cookieValue));
   g_Preference[client] = Multi1v1_GetRoundTypeIndex(cookieValue);
@@ -281,7 +281,7 @@ public bool IsAllowedPistol(const char[] weapon) {
 
 public int GetRifleIndex(int client) {
   for (int i = 0; i < g_numRifles; i++) {
-    if (StrEqual(g_Rifles[i][0], g_PrimaryWeapon[client])) {
+    if (StrEqual(g_Rifles[i][0], g_RifleWeaponChoice[client])) {
       return i;
     }
   }
@@ -290,7 +290,7 @@ public int GetRifleIndex(int client) {
 
 public int GetSMGIndex(int client) {
   for (int i = 0; i < g_numSMGs; i++) {
-    if (StrEqual(g_SMGs[i][0], g_SubWeapon[client])) {
+    if (StrEqual(g_SMGs[i][0], g_SMGWeaponChoice[client])) {
       return i;
     }
   }
@@ -299,7 +299,7 @@ public int GetSMGIndex(int client) {
 
 public int GetShotgunIndex(int client) {
   for (int i = 0; i < g_numShotguns; i++) {
-    if (StrEqual(g_Shotguns[i][0], g_ShotWeapon[client])) {
+    if (StrEqual(g_Shotguns[i][0], g_ShotgunWeaponChoice[client])) {
       return i;
     }
   }
@@ -308,7 +308,7 @@ public int GetShotgunIndex(int client) {
 
 public int GetPistolIndex(int client) {
   for (int i = 0; i < g_numPistols; i++) {
-    if (StrEqual(g_Pistols[i][0], g_SecondaryWeapon[client])) {
+    if (StrEqual(g_Pistols[i][0], g_PistolWeaponChoice[client])) {
       return i;
     }
   }
