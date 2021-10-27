@@ -177,13 +177,13 @@ public void RifleChoiceMenu(int client) {
 }
 
 /**
- * Rifle weapon handler - updates primaryWeapon.
+ * Rifle weapon handler - updates rifle weapon choice
  */
 public int MenuHandler_RifleChoice(Menu menu, MenuAction action, int param1, int param2) {
   if (action == MenuAction_Select) {
     int client = param1;
-    GetMenuItem(menu, param2, g_PrimaryWeapon[client], WEAPON_LENGTH);
-    SetClientCookie(client, g_PrimaryWeaponCookie, g_PrimaryWeapon[client]);
+    GetMenuItem(menu, param2, g_RifleWeaponChoice[client], WEAPON_LENGTH);
+    SetClientCookie(client, g_RifleWeaponChoiceCookie, g_RifleWeaponChoice[client]);
     GiveWeaponsMenu(client);
   } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
     int client = param1;
@@ -208,13 +208,13 @@ public void SMGChoiceMenu(int client) {
 }
 
 /**
- * SMG weapon handler - updates primaryWeapon.
+ * SMG weapon handler - updates SMG weapon choice
  */
 public int MenuHandler_SMGChoice(Menu menu, MenuAction action, int param1, int param2) {
   if (action == MenuAction_Select) {
     int client = param1;
-    GetMenuItem(menu, param2, g_SubWeapon[client], WEAPON_LENGTH);
-    SetClientCookie(client, g_SubWeaponCookie, g_SubWeapon[client]);
+    GetMenuItem(menu, param2, g_SMGWeaponChoice[client], WEAPON_LENGTH);
+    SetClientCookie(client, g_SMGWeaponChoiceCookie, g_SMGWeaponChoice[client]);
     GiveWeaponsMenu(client);
   } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
     int client = param1;
@@ -239,13 +239,13 @@ public void ShotgunChoiceMenu(int client) {
 }
 
 /**
- * Shotgun weapon handler - updates primaryWeapon.
+ * Shotgun weapon handler - updates shotgun weapon choice
  */
 public int MenuHandler_ShotgunChoice(Menu menu, MenuAction action, int param1, int param2) {
   if (action == MenuAction_Select) {
     int client = param1;
-    GetMenuItem(menu, param2, g_ShotWeapon[client], WEAPON_LENGTH);
-    SetClientCookie(client, g_ShotWeaponCookie, g_ShotWeapon[client]);
+    GetMenuItem(menu, param2, g_ShotgunWeaponChoice[client], WEAPON_LENGTH);
+    SetClientCookie(client, g_ShotgunWeaponChoiceCookie, g_ShotgunWeaponChoice[client]);
     GiveWeaponsMenu(client);
   } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
     int client = param1;
@@ -270,13 +270,13 @@ public void PistolChoiceMenu(int client) {
 }
 
 /**
- * Pistol choice handler - updates secondary weapon.
+ * Pistol choice handler - updates pistol weapon choice.
  */
 public int MenuHandler_PistolChoice(Menu menu, MenuAction action, int param1, int param2) {
   if (action == MenuAction_Select) {
     int client = param1;
-    GetMenuItem(menu, param2, g_SecondaryWeapon[client], WEAPON_LENGTH);
-    SetClientCookie(client, g_SecondaryWeaponCookie, g_SecondaryWeapon[client]);
+    GetMenuItem(menu, param2, g_PistolWeaponChoice[client], WEAPON_LENGTH);
+    SetClientCookie(client, g_PistolWeaponChoiceCookie, g_PistolWeaponChoice[client]);
     GiveWeaponsMenu(client);
   } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
     int client = param1;
