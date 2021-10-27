@@ -53,9 +53,9 @@ ConVar g_PistolMenuCvar;
 ConVar g_PreferenceWeightCvar;
 ConVar g_RandomizeArenaOrderCvar;
 ConVar g_RifleMenuCvar;
-ConVar g_SMGMenuCvar;
-ConVar g_ShotgunMenuCvar;
 ConVar g_RoundTimeCvar;
+ConVar g_ShotgunMenuCvar;
+ConVar g_SMGMenuCvar;
 ConVar g_SpectateFlagsCvar;
 ConVar g_UseAssistsCvar;
 ConVar g_UseChatPrefixCvar;
@@ -267,14 +267,14 @@ public void OnPluginStart() {
   g_RifleMenuCvar =
       CreateConVar("sm_multi1v1_show_rifle_menu", "1",
                    "Whether the rifle choice menu should be included in the guns menu");
-  g_SMGMenuCvar =
-      CreateConVar("sm_multi1v1_show_SMG_menu", "1",
-                   "Whether the SMG choice menu should be included in the guns menu");
-  g_ShotgunMenuCvar =
-      CreateConVar("sm_multi1v1_show_Shotgun_menu", "1",
-                   "Whether the Shotgun choice menu should be included in the guns menu");
   g_RoundTimeCvar =
       CreateConVar("sm_multi1v1_roundtime", "30", "Roundtime (in seconds)", _, true, 5.0);
+  g_ShotgunMenuCvar =
+      CreateConVar("sm_multi1v1_show_Shotgun_menu", "1",
+            "Whether the Shotgun choice menu should be included in the guns menu");
+  g_SMGMenuCvar =
+      CreateConVar("sm_multi1v1_show_SMG_menu", "1",
+            "Whether the SMG choice menu should be included in the guns menu");
   g_SpectateFlagsCvar =
       CreateConVar("sm_multi1v1_spectate_flags", "",
                    "Admin flags required to join spectate. Empty means anyone can join spectate.");
