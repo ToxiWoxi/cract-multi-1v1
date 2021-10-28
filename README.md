@@ -1,4 +1,4 @@
-csgo-multi-1v1
+cract-multi-1v1
 =======================================
 
 **Status: Supported.**
@@ -53,6 +53,7 @@ You may also tweak the values in ``cfg/sourcemod/multi1v1/game_cvars.cfg``, whic
 Here is a brief list of **some** cvars available. See the auto-generated ``cfg/sourcemod/multi1v1/multi1v1.cfg`` file for descriptions.
 - sm_multi1v1_autoupdate: whether the plugin attempts to use the auto-updater plugin
 - sm_multi1v1_pistol_behavior: what types of pistols (if any) should be given in non-pistol rounds
+- sm_multi1v1_message_prefix: what the prefix shown before messages should be if enabled.
 - sm_multi1v1_roundtime: length of the round
 - sm_multi1v1_use_database: whether the plugin attempts to store player statistics (e.g. elo ranking) in a MySQL database
 - sm_multi1v1_verbose_spawns: whether the plugin will dump information on player-spawn clustering on map starts
