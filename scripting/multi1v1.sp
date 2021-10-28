@@ -252,8 +252,8 @@ public void OnPluginStart() {
       "sm_multi1v1_block_guns_chat_commands", "1",
       "Whether commands like \"guns\" or \"!guns\" will be blocked from showing up in chat.");
   g_MessagePrefixCvar = CreateConVar(
-      "sm_multi1v1_message_prefix", " \x0c[\x01Cract\x0c]\x01 ",
-      "Prefix that is shown before Multi1v1 messages.");
+      "sm_multi1v1_message_prefix", "{LT-BL}[{WT}Multi 1v1{LT-BL}]",
+      "Prefix that is shown before Multi1v1 messages. For help with formatting, check out the color code guide on the wiki: https://github.com/ToxiWoxi/cract-multi-1v1/wiki/Color-Codes");
   g_MinPlayersForRatingChangesCvar = CreateConVar(
       "sm_multi1v1_min_players_for_rating_changes", "0",
       "Minimum number of players for rating changes");
