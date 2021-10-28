@@ -1,13 +1,9 @@
-#define MESSAGE_PREFIX " \x0c[\x01Cract\x0c]\x01 "
 #define DEBUG_CVAR "sm_multi1v1_debug"
 #define INTEGER_STRING_LENGTH 20  // max number of digits a 64-bit integer can use up as a string
 // this is for converting ints to strings when setting menu values/cookies
 
-char g_ColorNames[][] = {"{NORMAL}",     "{DARK_RED}",    "{PURPLE}",    "{GREEN}",
-                         "{MOSS_GREEN}", "{LIGHT_GREEN}", "{LIGHT_RED}", "{GRAY}",
-                         "{ORANGE}",     "{LIGHT_BLUE}",  "{DARK_BLUE}", "{PURPLE}"};
-char g_ColorCodes[][] = {"\x01", "\x02", "\x03", "\x04", "\x05", "\x06",
-                         "\x07", "\x08", "\x09", "\x0B", "\x0C", "\x0E"};
+char g_ColorNames[][] = {"{WT}", "{WHITE}", "{NORMAL}", "{NULL}", "{DK-RD}", "{DARKRED}", "{PR}", "{PURPLE}", "{GN}", "{GREEN}", "{LT-GN}", "{LIGHTGREEN}", "{LM}", "{LIMEGREEN}", "{RD}", "{RED}", "{GY}", "{GREY}", "{GRAY}", "{YL}", "{YELLOW}", "{BL-GY}", "{BLUEGREY}", "{BLUEGRAY}", "{LT-BL}", "{LIGHTBLUE}", "{BL}", "{BLUE}", "{PK}", "{PINK}", "{LT-RD}", "{LIGHTRED}", "{GD}", "{GOLD}"};
+char g_ColorCodes[][] = {"\x01", "\x01",    "\x01",     "\x01",   "\x02",    "\x02",      "\x03", "\x03",     "\x04", "\x04",    "\x05",    "\x05",         "\x06", "\x06",        "\x07", "\x07",  "\x08", "\x08",   "\x08",   "\x09", "\x09",     "\x0A",    "\x0A",       "\x0A",       "\x0B",    "\x0B",        "\x0C", "\x0C",   "\x0E", "\x0E",   "\x0F",    "\x0F",       "\x10", "\x10"};
 
 #include <clientprefs>
 #include <cstrike>
