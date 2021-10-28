@@ -3,7 +3,7 @@
 	"NoOpponent"
 	{
 		"#format"	"{1:i}"
-		"en"		"You are in arena {GREEN}{1} {NORMAL}with {DARK_RED}no opponent."
+		"en"		"You are in arena {GREEN}{1} {NORMAL}with {DARKRED}no opponent."
 	}
 	"NoOpponentHint"
 	{
@@ -26,17 +26,17 @@
 	"WonMessage"
 	{
 		"#format"	"{1:i},{2:.1f},{3:N},{4:i},{5:.1f}"
-		"en"		"{GREEN}You {NORMAL}(rating {GREEN}{1}, {LIGHT_GREEN}+{2}{NORMAL}) beat {PURPLE}{3} {NORMAL}(rating {PURPLE}{4}, {DARK_RED}-{5}{NORMAL})."
+		"en"		"{GREEN}You {NORMAL}(rating {GREEN}{1}, {LIMEGREEN}+{2}{NORMAL}) beat {PURPLE}{3} {NORMAL}(rating {PURPLE}{4}, {DARKRED}-{5}{NORMAL})."
 	}
 	"LossMessage"
 	{
 		"#format"	"{1:i},{2:.1f},{3:N},{4:i},{5:.1f}"
-		"en"		"{GREEN}You {NORMAL}(rating {GREEN}{1}, {LIGHT_RED}-{2}{NORMAL}) {NORMAL}lost to {PURPLE}{3} {NORMAL}(rating {PURPLE}{4}, {LIGHT_GREEN}+{5}{NORMAL})."
+		"en"		"{GREEN}You {NORMAL}(rating {GREEN}{1}, {RED}-{2}{NORMAL}) {NORMAL}lost to {PURPLE}{3} {NORMAL}(rating {PURPLE}{4}, {LIMEGREEN}+{5}{NORMAL})."
 	}
 	"TimeRanOut"
 	{
 		"#format"	"{1:i},{2:.1f}"
-		"en"		"{GREEN}You {NORMAL}(rating {GREEN}{1}, {LIGHT_RED}-{2}{NORMAL}) let time run out."
+		"en"		"{GREEN}You {NORMAL}(rating {GREEN}{1}, {RED}-{2}{NORMAL}) let time run out."
 	}
 	"MostWins"
 	{
