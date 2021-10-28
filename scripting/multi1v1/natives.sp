@@ -1,3 +1,5 @@
+
+
 // See include/multi1v1.inc for documentation.
 
 #define CHECK_CONNECTED(%1) \
@@ -217,10 +219,13 @@ public int Native_Multi1v1Message(Handle plugin, int numParams) {
   FormatNativeString(0, 2, 3, sizeof(buffer), bytesWritten, buffer);
   char finalMsg[1024];
 
+  char messagePrefix[1024];
+  g_MessagePrefixCvar.GetString(messagePrefix, sizeof(messagePrefix));
+
   if (g_UseChatPrefixCvar.IntValue == 0)
     Format(finalMsg, sizeof(finalMsg), " %s", buffer);
   else
-    Format(finalMsg, sizeof(finalMsg), "%s%s", MESSAGE_PREFIX, buffer);
+    Format(finalMsg, sizeof(finalMsg), " %s{WT} %s", messagePrefix, buffer);
 
   Colorize(finalMsg, sizeof(finalMsg));
   PrintToChat(client, finalMsg);
@@ -236,10 +241,13 @@ public int Native_Multi1v1MessageToAll(Handle plugin, int numParams) {
       SetGlobalTransTarget(i);
       FormatNativeString(0, 1, 2, sizeof(buffer), bytesWritten, buffer);
 
+      char messagePrefix[1024];
+      g_MessagePrefixCvar.GetString(messagePrefix, sizeof(messagePrefix));
+
       if (g_UseChatPrefixCvar.IntValue == 0)
         Format(finalMsg, sizeof(finalMsg), " %s", buffer);
       else
-        Format(finalMsg, sizeof(finalMsg), "%s%s", MESSAGE_PREFIX, buffer);
+        Format(finalMsg, sizeof(finalMsg), " %s{WT} %s", messagePrefix, buffer);
 
       Colorize(finalMsg, sizeof(finalMsg));
       PrintToChat(i, finalMsg);
