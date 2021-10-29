@@ -138,18 +138,18 @@
 	}
 	"WeaponsMenuSelection"
 	{
-		"en"		"Choose your favorite rifle:"
+		"en"		"Choose your preferred rifle:"
 	}
 	"SMGMenuTitle"
 	{
-		"en"		"Choose your favorite SMG:"
+		"en"		"Choose your preferred SMG:"
 	}
 	"ShotgunMenuTitle"
 	{
-		"en"		"Choose your favorite shotgun:"
+		"en"		"Choose your preferred shotgun:"
 	}
 	"PistolMenuTitle"
 	{
-		"en"		"Choose your favorite pistol:"
+		"en"		"Choose your preferred pistol:"
 	}
 }
