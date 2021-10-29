@@ -222,7 +222,7 @@ public int Native_Multi1v1Message(Handle plugin, int numParams) {
   char messagePrefix[1024];
   g_MessagePrefixCvar.GetString(messagePrefix, sizeof(messagePrefix));
 
-  if (g_UseChatPrefixCvar.IntValue == 0)
+  if (g_UseMessagePrefixCvar.IntValue == 0)
     Format(finalMsg, sizeof(finalMsg), " %s", buffer);
   else
     Format(finalMsg, sizeof(finalMsg), " %s{WT} %s", messagePrefix, buffer);
@@ -244,7 +244,7 @@ public int Native_Multi1v1MessageToAll(Handle plugin, int numParams) {
       char messagePrefix[1024];
       g_MessagePrefixCvar.GetString(messagePrefix, sizeof(messagePrefix));
 
-      if (g_UseChatPrefixCvar.IntValue == 0)
+      if (g_UseMessagePrefixCvar.IntValue == 0)
         Format(finalMsg, sizeof(finalMsg), " %s", buffer);
       else
         Format(finalMsg, sizeof(finalMsg), " %s{WT} %s", messagePrefix, buffer);
