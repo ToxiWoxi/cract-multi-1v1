@@ -1,3 +1,18 @@
+[Cract] 1.1.0:
+- remove all non-english translations 
+- update `multi1v1.phrases.txt` 
+- clean formatting in `multi1v1.sp`
+- update color formatting
+- add cvar `sm_multi1v1_message_prefix`  (default `{LT-BL}[{WT}Multi 1v1{LT-BL}]`)
+- change `sm_multi1v1_default_pistol` to default to the P2000/USP-S
+- remove cvar `sm_multi1v1_pistol_behavior`
+- add cvar `sm_multi1v1_pistol_on_rifle_rounds` (default: `1` : give players the pistols they prefer)
+- add cvar `sm_multi1v1_pistol_on_smg_rounds` (default: `1` : give players the pistols they prefer)
+- add cvar `sm_multi1v1_pistol_on_shotgun_rounds` (default: `1` : give players the pistols they prefer)
+- add cvar `sm_multi1v1_pistol_on_awp_rounds` (default: `1` : give players the pistols they prefer)
+- change message prefix to `[Multi 1v1]`
+- remove smbuild
+
 [Cract] 1.0.0:
 - reset version number
 - add smg and shotgun weapon preferences
