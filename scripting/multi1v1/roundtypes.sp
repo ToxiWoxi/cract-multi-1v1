@@ -120,10 +120,10 @@ public void RifleHandler(int client) {
   Client_SetHelmet(client, true);
   Client_SetArmor(client, 100);
 
-  int pistolBehavior = g_PistolBehaviorCvar.IntValue;
-  if (pistolBehavior == 0 || pistolBehavior == 3) {
+  int rifleRoundPistol = g_RifleRoundPistolCvar.IntValue;
+  if (rifleRoundPistol == 1) {
     GiveWeapon(client, g_PistolWeaponChoice[client]);
-  } else if (pistolBehavior == 2) {
+  } else if (rifleRoundPistol == 2) {
     char defaultPistol[WEAPON_NAME_LENGTH];
     g_DefaultPistolCvar.GetString(defaultPistol, sizeof(defaultPistol));
     GiveWeapon(client, defaultPistol);
@@ -136,10 +136,10 @@ public void SMGHandler(int client) {
   Client_SetHelmet(client, true);
   Client_SetArmor(client, 100);
 
-  int pistolBehavior = g_PistolBehaviorCvar.IntValue;
-  if (pistolBehavior == 0 || pistolBehavior == 3) {
+  int smgRoundPistol = g_SMGRoundPistolCvar.IntValue;
+  if (smgRoundPistol == 1) {
     GiveWeapon(client, g_PistolWeaponChoice[client]);
-  } else if (pistolBehavior == 2) {
+  } else if (smgRoundPistol == 2) {
     char defaultPistol[WEAPON_NAME_LENGTH];
     g_DefaultPistolCvar.GetString(defaultPistol, sizeof(defaultPistol));
     GiveWeapon(client, defaultPistol);
@@ -152,10 +152,10 @@ public void ShotgunHandler(int client) {
   Client_SetHelmet(client, true);
   Client_SetArmor(client, 100);
 
-  int pistolBehavior = g_PistolBehaviorCvar.IntValue;
-  if (pistolBehavior == 0 || pistolBehavior == 3) {
+  int shotgunRoundPistol = g_ShotgunRoundPistolCvar.IntValue;
+  if (shotgunRoundPistol == 1) {
     GiveWeapon(client, g_PistolWeaponChoice[client]);
-  } else if (pistolBehavior == 2) {
+  } else if (shotgunRoundPistol == 2) {
     char defaultPistol[WEAPON_NAME_LENGTH];
     g_DefaultPistolCvar.GetString(defaultPistol, sizeof(defaultPistol));
     GiveWeapon(client, defaultPistol);
@@ -179,10 +179,10 @@ public void AwpHandler(int client) {
   GiveWeapon(client, "weapon_awp");
   Client_SetHelmet(client, true);
 
-  int pistolBehavior = g_PistolBehaviorCvar.IntValue;
-  if (pistolBehavior == 0) {
+  int awpRoundPistol = g_AWPRoundPistolCvar.IntValue;
+  if (awpRoundPistol == 1) {
     GiveWeapon(client, g_PistolWeaponChoice[client]);
-  } else if (pistolBehavior == 2 || pistolBehavior == 3) {
+  } else if (awpRoundPistol == 2) {
     char defaultPistol[WEAPON_NAME_LENGTH];
     g_DefaultPistolCvar.GetString(defaultPistol, sizeof(defaultPistol));
     GiveWeapon(client, defaultPistol);
