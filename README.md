@@ -1,7 +1,7 @@
 cract-multi-1v1
 =======================================
 
-**Status: Supported.**
+**Status: Unsupported (pending).**
 
 The multi1v1 plugin sets up any number of players in 1v1-situations on specially made maps and they fight in a ladder-type system each round. The winners move up an arena, and the losers go down an arena. Players choose between specific round types (for example: "rifle", "smg," "shotgun," "pistol", "awp"), and the plugin automatically spawns and gives players the appropriate weapons each round start. 
 
